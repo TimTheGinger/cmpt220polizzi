@@ -40,7 +40,7 @@ public class A1Paper {
     if (!a1Check(numArray)) {
       System.out.println("impossible");
     } else {
-      System.out.printf("%.11f", tapeLength(numArray));
+      System.out.print(tapeLength(numArray));
     }
 
   }
@@ -53,7 +53,7 @@ public class A1Paper {
    * return false.
    */
   private static boolean a1Check(int[] arr) {
-    final int goal = 1000;
+    final double goal = 1000;
     double runningSum = 0;
 
     for (int i = 0; i < arr.length; i++) {
@@ -61,8 +61,7 @@ public class A1Paper {
       Takes the endpoint (goal), divides by the value of the index of the number and then multiplies
       by the number of papers.
       */
-      double temp = (goal / (Math.pow(2, i + 1)) * arr[i]);
-      runningSum += temp;
+      runningSum += (goal / (Math.pow(2, i + 1)) * arr[i]);
     }
 
     if (runningSum >= goal) {
@@ -80,25 +79,30 @@ public class A1Paper {
   private static double tapeLength(int[] arr) {
     double[] paperSizes = getNecessary(arr);
 
-    final double a1width = 0.84089641525;
-    final double a1height = 0.5946035575;
-    double iWidth = a1width;
-    double iHeight = a1height;
+    int papersLength = paperSizes.length;
+
+    if(papersLength % 2 != 0)
+      papersLength--;
+
+    final double a2Long = 0.42044820762;
+    final double a2Short = 0.5946035575;
+
+    double iLong = a2Short / Math.pow(2, (paperSizes.length - 2)/2);
+    double iShort = a2Long / Math.pow(2, (paperSizes.length - 2)/2);
+
     double runningSum = 0;
 
-    for (int i = 0; i < paperSizes.length; i++) {
-      double temp = iWidth;
-      iWidth = iHeight;
-      iHeight = temp / 2;
+    for(int i = paperSizes.length-1; i > 1; i--){
+      double addTogether = paperSizes[i]/2;
+      runningSum = iLong * addTogether;
+      paperSizes[i-1] += addTogether;
 
-      runningSum += iWidth * Math.ceil(paperSizes[i] / 2);
-
-      if (paperSizes[i] % 2 == 0) {
-        runningSum += iHeight * Math.ceil(paperSizes[i] / 2);
-      }
+      double temp = iShort;
+      iShort = iLong;
+      iLong = temp * 2;
     }
 
-    return runningSum;
+    return runningSum + a2Long;
   }
 
   /**
@@ -108,23 +112,22 @@ public class A1Paper {
    * @return The trimmed array of papers
    */
   private static double[] getNecessary(int[] arr) {
-    final int goal = 1000;
+    final double goal = 1000;
     double runningSum = 0;
 
     double[] tempArr = new double[arr.length];
 
     for (int i = 0; runningSum < goal; i++) {
-      int arrAtI = arr[i]; // the amount of papers of A(i+2) size
       // The value of item i in arr, half of the previous value
       double valueOfI = goal / (Math.pow(2, i + 1));
 
-      if (valueOfI * arrAtI > goal - runningSum) {
+      if (valueOfI * arr[i] > goal - runningSum) {
         double temp = (goal - runningSum) / valueOfI;
         tempArr[i] = temp;
         runningSum += temp * valueOfI;
       } else {
-        tempArr[i] = arrAtI;
-        runningSum += valueOfI * arrAtI;
+        tempArr[i] = arr[i];
+        runningSum += valueOfI * arr[i];
       }
     }
 
