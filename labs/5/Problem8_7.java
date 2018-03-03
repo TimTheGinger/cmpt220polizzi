@@ -4,5 +4,4 @@ public class Problem8_7 {
     //TODO: Start coding here
   }
 
-  private static int[] 
 }
