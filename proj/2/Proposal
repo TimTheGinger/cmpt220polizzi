@@ -1,0 +1,8 @@
+Encrypted Computer To Computer Communication Program
+
+I am going to set up a computer to computer application that will securely communicate between the
+two devices. This program will have certain milestones, such as first setting up communications
+between two devices, then having the communications work simultaneously using threads, and finally
+encrypting the communications so only devices with the proper key would be able to communicate. This
+will be useful for me in the future to help understand how computer to computer communications work
+and will help me understand how encrypting their communications works.
