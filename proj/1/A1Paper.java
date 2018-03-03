@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+// JA: Was this accepted by Kattis? If so, please send me the screenshot.
+
 public class A1Paper {
 
   public static void main(String[] args) {
