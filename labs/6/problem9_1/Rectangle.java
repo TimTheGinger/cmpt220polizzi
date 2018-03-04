@@ -1,4 +1,4 @@
-package problem9_1;
+//package problem9_1;
 
 /**
  * A rectangle object

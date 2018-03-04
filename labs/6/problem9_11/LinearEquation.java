@@ -1,4 +1,4 @@
-package problem9_11;
+//package problem9_11;
 
 /**
  * Creates a new linear equation object to solve
