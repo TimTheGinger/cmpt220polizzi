@@ -1,4 +1,4 @@
-package Problem10_3;
+//package Problem10_3;
 
 import java.util.*;
 
@@ -6,12 +6,12 @@ public class MyIntegerTester {
 
   public static void main(String[] args) {
     //get();
-    //evens();
-    //odds();
-    //primes();
-    //equality();
-    //parseChar();
-    //parseString();
+    evens();
+    odds();
+    primes();
+    equality();
+    parseChar();
+    parseString();
   }
 
   private static void get() {

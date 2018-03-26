@@ -1,4 +1,4 @@
-package Problem10_5;
+//package Problem10_5;
 
 public class StackOfIntegers {
 
