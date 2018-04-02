@@ -1,11 +1,11 @@
 //package problem9_7;
 
-import Problem11_3.Account;
+import Problem11_3.Account11_3;
 
 public class AccountTester {
 
   public static void main(String[] args) {
-    Account account1122 = new Account(1122,20000);
+    Account11_3 account1122 = new Account11_3(1122,20000);
 
     account1122.setAnnualInterestRate(4.5);
 
