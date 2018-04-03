@@ -158,4 +158,13 @@ public class Account11_3 {
   public void deposit(double amount) {
     balance += amount;
   }
+
+  /**
+   * Returns a string representation of Account
+   *
+   * @return The string representation of Account
+   */
+  public String toString() {
+    return "Account Number: " + id + "\nBalance: " + balance + "\nDate Created: " + dateCreated;
+  }
 }
