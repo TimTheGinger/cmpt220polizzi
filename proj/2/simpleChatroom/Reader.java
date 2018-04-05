@@ -51,7 +51,7 @@ public class Reader implements Runnable {
     //gets the first character and everything after the first space
     try {
       protocalCheck = input.substring(0, 1);
-      after = input.substring(input.indexOf(" ") - 1);
+      after = input.substring(input.indexOf(" ") + 1);
     } catch (StringIndexOutOfBoundsException i) {
 
     }
@@ -167,8 +167,7 @@ public class Reader implements Runnable {
         to type '/help' to bring up the list of commands.
         */
         default:
-          System.out.println(father.father.clientList.toString());
-//          father.sendInfo("Type /help for commands");
+          father.sendInfo("Type /help for commands");
           break;
       }
       //if no command is directly inputted, the message will be 'told' to the whole chatroom
