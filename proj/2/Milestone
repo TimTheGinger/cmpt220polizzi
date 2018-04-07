@@ -1,0 +1,6 @@
+Milestone:
+
+At this point, I have cleaned up my chatroom that connects multiple clients using threads to a server
+to a point where it can satisfactorily function. Currently I am working on using the concepts from this
+to establish a peer to peer connection without using the telnet command of terminal and only java
+functions. Once this is completed I will create a gui an then encrypt the messages sent by the chat.
