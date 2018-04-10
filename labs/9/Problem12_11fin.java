@@ -1,16 +1,14 @@
-package Problem12_11;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
-public class Problem12_11 {
+public class Problem12_11fin {
 
   public static void main(String[] args) throws IOException {
     //Check number of args
     if (args.length != 2) {
-      System.out.println("Usage: java Problem12_11 <word to remove> <filename>");
+      System.out.println("Usage: java Problem12_11fin <word to remove> <filename>");
       System.exit(1);
     }
 
