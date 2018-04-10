@@ -22,11 +22,19 @@ public class RemoveText {
       Scanner input = new Scanner(filename);
       PrintWriter output = new PrintWriter(filename);
 
-      while(input.hasNext()){
+      while (input.hasNext()) {
         String oldLine = input.nextLine();
-        String newLine = oldLine.replace(toRemove, "");
+        String newLine = oldLine;
+
+        while (newLine.contains(toRemove)) {
+          int removeIndex = newLine.indexOf(toRemove);
+          newLine = newLine.substring(0, removeIndex) +
+              newLine.substring(removeIndex + toRemove.length());
+        }
         output.println(newLine);
       }
+
+      System.out.println("Process complete");
     } catch (java.io.FileNotFoundException ex) {
       System.out.println(ex.getMessage());
     }
