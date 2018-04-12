@@ -2,6 +2,8 @@
  * note: please don't break my code or move around the paths. It is neat and
  * tidy and I'd prefer it stays that way
  */
+ 
+// JA: No test class?
 
 package Problem11_5;
 

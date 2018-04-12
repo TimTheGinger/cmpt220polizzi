@@ -1,4 +1,4 @@
-package Problem12_5;
+//package Problem12_5;
 
 import Problem11_1.GeometricObject;
 
