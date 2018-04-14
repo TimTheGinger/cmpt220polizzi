@@ -92,7 +92,7 @@ public class SimpleChatroom implements Runnable {
   }
 
   /**
-   * gets the Reeder of the user
+   * gets the Reader of the user
    *
    * @return The Reader
    */
