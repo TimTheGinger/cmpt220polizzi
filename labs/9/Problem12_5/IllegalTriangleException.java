@@ -1,4 +1,4 @@
-//package Problem12_5;
+package Problem12_5;
 
 public class IllegalTriangleException extends Throwable {
   String errorDesc;

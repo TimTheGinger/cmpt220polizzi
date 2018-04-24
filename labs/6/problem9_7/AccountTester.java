@@ -1,4 +1,4 @@
-//package problem9_7;
+package problem9_7;
 
 import Problem11_3.Account11_3;
 

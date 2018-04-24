@@ -1,8 +1,6 @@
-//package Problem12_5;
+package Problem12_5;
 
-import Problem11_1.GeometricObject;
-
-public class Triangle12_5 extends GeometricObject {
+public class Triangle12_5 extends GeometricObject12_5 {
 
   private double side1 = 1.0;
   private double side2 = 1.0;
