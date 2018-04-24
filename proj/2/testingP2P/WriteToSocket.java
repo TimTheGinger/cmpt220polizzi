@@ -34,6 +34,7 @@ public class WriteToSocket implements Runnable {
    */
   public void run() {
     while (!Thread.interrupted()) {
+      /* Terminal Mode
       if (scan.hasNext()) {
         String nextLine = scan.nextLine();
         queueMessage(nextLine);
@@ -42,6 +43,14 @@ public class WriteToSocket implements Runnable {
         if (nextLine.equals("/disc")) {
           father.kill();
         }
+      }
+      */
+
+      /* GUI Mode */
+      if(!queue.isEmpty()){
+        if(queue.peek().equals("/disc"))
+          father.kill();
+        sendUserMessage(connectionToClient);
       }
     }
   }

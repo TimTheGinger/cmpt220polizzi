@@ -2,6 +2,8 @@ package GUI;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import javax.swing.JButton;
@@ -29,6 +31,8 @@ public class SocketGUI {
     textArea1 = new JTextArea();
     textArea1.setText("Welcome to PortConnect");
     textArea1.setEditable(false);
+
+
 
     //Sets up the background jPanel
     JPanel messagePanel = new JPanel(new BorderLayout());
@@ -58,6 +62,15 @@ public class SocketGUI {
 
     //Send button
     button1 = new JButton("Send");
+
+    // Sends any text in TextField1 to the server
+    button1.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        writer.queueMessage(textField1.getText());
+        textField1.setText("");
+      }
+    });
 
     //Layout
     messagePanel.add(textField1, BorderLayout.CENTER);
