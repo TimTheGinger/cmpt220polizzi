@@ -15,17 +15,19 @@ import javax.swing.WindowConstants;
 import testingP2P.ReadFromSocket;
 import testingP2P.WriteToSocket;
 
-public class SocketGUI {
+public class SocketGUI implements Runnable{
 
   private JButton button1;
   private JTextField textField1;
   private JTextArea textArea1;
   private JFrame frame;
   private ReadFromSocket reader;
+  private Thread t;
 
   public SocketGUI(ReadFromSocket reader, WriteToSocket writer) {
     this.reader = reader;
     reader.setGui(this);
+    t = new Thread();
 
     //Sets up frame
     frame = new JFrame();
@@ -83,6 +85,8 @@ public class SocketGUI {
     frame.add(messagePanel, BorderLayout.SOUTH);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
+
+    t.start();
   }
 
   /**
@@ -101,5 +105,10 @@ public class SocketGUI {
    */
   public void append(String toAppend) {
     textArea1.append("\n" + toAppend);
+  }
+
+  @Override
+  public void run() {
+
   }
 }
