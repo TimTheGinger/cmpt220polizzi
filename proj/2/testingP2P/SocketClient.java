@@ -11,6 +11,7 @@ public class SocketClient {
   private static String ip;
   private WriteToSocket writer;
   private ReadFromSocket reader;
+  private boolean isConnected;
 
 
   public static void main(String[] args) {
@@ -30,6 +31,21 @@ public class SocketClient {
   }
 
   public SocketClient() {
+    isConnected = false;
+    openSocket();
+
+    // write to socket
+    writer = new WriteToSocket(this, sock);
+
+    // read from socket
+    reader = new ReadFromSocket(this, sock);
+  }
+
+  public SocketClient(String ip, int port) {
+    isConnected = false;
+    this.ip = ip;
+    this.port = port;
+
     openSocket();
 
     // write to socket
@@ -49,6 +65,7 @@ public class SocketClient {
       // this method will block for the defined number of milliseconds
       int timeout = 2000;
       sock.connect(sockaddr, timeout);
+      isConnected = true;
     } catch (UnknownHostException e) {
       e.printStackTrace();
     } catch (SocketTimeoutException e) {
@@ -56,6 +73,18 @@ public class SocketClient {
     } catch (IOException e) {
       e.printStackTrace();
     }
+  }
+
+  public boolean isConnected() {
+    return isConnected;
+  }
+
+  public WriteToSocket getWriter() {
+    return writer;
+  }
+
+  public ReadFromSocket getReader() {
+    return reader;
   }
 
   public void kill() {
