@@ -26,6 +26,9 @@ public class IPandPort {
 
   private boolean connected;
 
+  public static void main(String[] args){
+    new IPandPort();
+  }
 
   public IPandPort() {
     connected = false;

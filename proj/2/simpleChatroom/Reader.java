@@ -33,7 +33,9 @@ public class Reader implements Runnable {
         checkForProtcals(finRead);
       }
     } catch (IOException e) {
-
+      e.printStackTrace();
+    } catch (java.util.NoSuchElementException e){
+      e.printStackTrace();
     }
   }
 

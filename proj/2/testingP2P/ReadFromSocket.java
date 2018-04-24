@@ -1,10 +1,14 @@
 package testingP2P;
 
+import GUI.SocketGUI;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.Stack;
 import simpleChatroom.SimpleChatroom;
 
 public class ReadFromSocket implements Runnable {
@@ -12,6 +16,7 @@ public class ReadFromSocket implements Runnable {
   private SocketClient father;
   private Thread w;
   private Socket connectionToClient;
+  private SocketGUI sockGui;
 
   public ReadFromSocket(SocketClient parent, Socket clientConnection) {
     father = parent;
@@ -30,9 +35,13 @@ public class ReadFromSocket implements Runnable {
       while (!Thread.interrupted()) {
         try {
           String finRead = in.nextLine();
-          readMessage(finRead);
+          consoleMessage(finRead);
+
+          while(sockGui == null);
+
+          sockGui.append(finRead);
         } catch (java.util.NoSuchElementException e) {
-          readMessage("Error - unknown String");
+          consoleMessage("Error - unknown String");
           e.printStackTrace();
         }
       }
@@ -46,9 +55,19 @@ public class ReadFromSocket implements Runnable {
    *
    * @param input The message to be read
    */
-  private void readMessage(String input) {
+  private void consoleMessage(String input) {
     System.out.println(input);
   }
+
+  /**
+   * Sets the GUI linked to this reader
+   *
+   * @param sockGui The GUI to be linked
+   */
+  public void setGui(SocketGUI sockGui) {
+    this.sockGui = sockGui;
+  }
+
 
   /**
    * Ends the run method, effectively deleting the reader

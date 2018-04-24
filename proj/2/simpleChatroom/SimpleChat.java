@@ -116,6 +116,16 @@ public class SimpleChat implements Runnable {
   }
 
   /**
+   * deletes a user
+   *
+   * @param name the user to be removed
+   */
+  public void killUser(String name) {
+    clientList.get(name).annihilate();
+    clientList.remove(name);
+  }
+
+  /**
    * terminates the thread, killing all processes
    */
   public void annihilate() {

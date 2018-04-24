@@ -21,8 +21,12 @@ public class SocketGUI {
   private JTextField textField1;
   private JTextArea textArea1;
   private JFrame frame;
+  private ReadFromSocket reader;
 
   public SocketGUI(ReadFromSocket reader, WriteToSocket writer) {
+    this.reader = reader;
+    reader.setGui(this);
+
     //Sets up frame
     frame = new JFrame();
     frame.setSize(600, 400);
@@ -31,8 +35,6 @@ public class SocketGUI {
     textArea1 = new JTextArea();
     textArea1.setText("Welcome to PortConnect");
     textArea1.setEditable(false);
-
-
 
     //Sets up the background jPanel
     JPanel messagePanel = new JPanel(new BorderLayout());
@@ -83,7 +85,21 @@ public class SocketGUI {
     frame.setVisible(true);
   }
 
+  /**
+   * Allows this frame to be set to visible or hidden from another class
+   *
+   * @param visible True if the frame is visible, false otherwise
+   */
   public void setVisibility(boolean visible) {
     frame.setVisible(visible);
+  }
+
+  /**
+   * Appends toAppend to textArea1
+   *
+   * @param toAppend the String to be appended to textArea1
+   */
+  public void append(String toAppend) {
+    textArea1.append("\n" + toAppend);
   }
 }
