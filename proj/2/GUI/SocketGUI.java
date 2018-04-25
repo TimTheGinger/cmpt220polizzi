@@ -9,37 +9,50 @@ import java.awt.event.FocusListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
+import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.text.StyledDocument;
 import testingP2P.ReadFromSocket;
 import testingP2P.WriteToSocket;
 
-public class SocketGUI implements Runnable{
+public class SocketGUI implements Runnable {
 
   private JButton button1;
   private JTextField textField1;
   private JTextArea textArea1;
   private JFrame frame;
-  private ReadFromSocket reader;
-  private Thread t;
 
-  public SocketGUI(ReadFromSocket reader, WriteToSocket writer) {
-    this.reader = reader;
+  public SocketGUI(ReadFromSocket extReader, WriteToSocket extWriter) {
+    ReadFromSocket reader = extReader;
     reader.setGui(this);
-    t = new Thread();
+    Thread t = new Thread();
 
     //Sets up frame
     frame = new JFrame();
     frame.setSize(600, 400);
 
+    //TextArea BS
+
+    JPanel middlePanel = new JPanel();
+    middlePanel.setBorder(new TitledBorder(new EtchedBorder(), "Display Area"));
+
     //Sets up TextArea
-    textArea1 = new JTextArea();
-    textArea1.setText("Welcome to PortConnect");
+    textArea1 = new JTextArea(16, 58);
     textArea1.setEditable(false);
+    JScrollPane scroll = new JScrollPane(textArea1);
+    textArea1.setText("Welcome to PortConnect");
+    scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+    middlePanel.add(scroll);
 
     //Sets up the background jPanel
-    JPanel messagePanel = new JPanel(new BorderLayout());
+    JPanel inputPanel = new JPanel(new BorderLayout());
 
     //All the message bar's text bs
     textField1 = new JTextField("Write Message Here");
@@ -72,18 +85,20 @@ public class SocketGUI implements Runnable{
     button1.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-        writer.queueMessage(textField1.getText());
+        extWriter.queueMessage(textField1.getText());
         textField1.setText("");
       }
     });
 
     //Layout
-    messagePanel.add(textField1, BorderLayout.CENTER);
-    messagePanel.add(button1, BorderLayout.EAST);
+    inputPanel.add(textField1, BorderLayout.CENTER);
+    inputPanel.add(button1, BorderLayout.EAST);
 
     //Adding things to the jFrame and then making it visible
-    frame.add(textArea1, BorderLayout.CENTER);
-    frame.add(messagePanel, BorderLayout.SOUTH);
+    frame.add(middlePanel, BorderLayout.CENTER);
+    frame.add(inputPanel, BorderLayout.SOUTH);
+
+    frame.pack();
     frame.getRootPane().setDefaultButton(button1);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
