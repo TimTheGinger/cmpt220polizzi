@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.net.ConnectException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,7 +28,7 @@ public class IPandPort {
 
   private boolean connected;
 
-  public static void main(String[] args){
+  public static void main(String[] args) {
     new IPandPort();
   }
 
@@ -45,6 +47,21 @@ public class IPandPort {
 
     iPField = new JTextField(SwingConstants.CENTER);
     iPField.setPreferredSize(new Dimension(400, 25));
+
+    //Tab to change Fields
+    iPField.addKeyListener(new KeyAdapter() {
+      @Override
+      public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_TAB) {
+          if (e.getModifiers() > 0) {
+            iPField.transferFocusBackward();
+          } else {
+            iPField.transferFocus();
+          }
+          e.consume();
+        }
+      }
+    });
 
     portLabel = new JLabel("Port", SwingConstants.CENTER);
     portLabel.setPreferredSize(new Dimension(300, 50));
@@ -93,11 +110,12 @@ public class IPandPort {
     iPandPortPanel.add(connectionFailed, BorderLayout.CENTER);
 
     frame.add(iPandPortPanel, BorderLayout.CENTER);
+    frame.getRootPane().setDefaultButton(submitButton);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
   }
 
-  public boolean isConnected(){
+  public boolean isConnected() {
     return connected;
   }
 }

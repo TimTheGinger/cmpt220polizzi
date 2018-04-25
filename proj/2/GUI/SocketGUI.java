@@ -43,6 +43,7 @@ public class SocketGUI implements Runnable{
 
     //All the message bar's text bs
     textField1 = new JTextField("Write Message Here");
+    textField1.requestFocusInWindow();
 
     //The bs with dealing with placeholder text
     textField1.setForeground(Color.GRAY);
@@ -83,6 +84,7 @@ public class SocketGUI implements Runnable{
     //Adding things to the jFrame and then making it visible
     frame.add(textArea1, BorderLayout.CENTER);
     frame.add(messagePanel, BorderLayout.SOUTH);
+    frame.getRootPane().setDefaultButton(button1);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     frame.setVisible(true);
 
