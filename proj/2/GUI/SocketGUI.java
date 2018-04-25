@@ -17,6 +17,7 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.WindowConstants;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.text.DefaultCaret;
 import javax.swing.text.StyledDocument;
 import testingP2P.ReadFromSocket;
 import testingP2P.WriteToSocket;
@@ -45,9 +46,13 @@ public class SocketGUI implements Runnable {
     //Sets up TextArea
     textArea1 = new JTextArea(16, 58);
     textArea1.setEditable(false);
+    textArea1.setLineWrap(true);
     JScrollPane scroll = new JScrollPane(textArea1);
     textArea1.setText("Welcome to PortConnect");
     scroll.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+
+    DefaultCaret caret = (DefaultCaret)textArea1.getCaret();
+    caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
     middlePanel.add(scroll);
 

@@ -3,6 +3,7 @@ package simpleChatroom;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -27,15 +28,20 @@ public class Reader implements Runnable {
       Scanner in = new Scanner(connectionToClient.getInputStream());
 
       while (!Thread.interrupted()) {
-        Scanner read = new Scanner(in.nextLine());
-        String finRead = read.nextLine();
+        String finRead = "";
+
+        try {
+          Scanner read = new Scanner(in.nextLine());
+          finRead = read.nextLine();
+        } catch (NoSuchElementException e) {
+          System.out.println(e);
+        }
 
         checkForProtcals(finRead);
       }
     } catch (IOException e) {
       e.printStackTrace();
-    } catch (java.util.NoSuchElementException e){
-      e.printStackTrace();
+    } catch (java.util.NoSuchElementException e) {
     }
   }
 
