@@ -1,4 +1,4 @@
-package Problem13_7;
+//package Problem13_7;
 
 public abstract class GeometricObject13_7 {
 
