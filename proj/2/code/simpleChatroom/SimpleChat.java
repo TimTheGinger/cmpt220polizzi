@@ -9,9 +9,11 @@ public class SimpleChat implements Runnable {
   private Thread t;
   private int incr;
   public Map<String, SimpleChatroom> clientList;
+  private int portNum;
 
-  public SimpleChat() {
+  public SimpleChat(int port) {
     clientList = new HashMap<>();
+    portNum = port;
     t = new Thread(this);
     t.start();
   }
@@ -24,7 +26,7 @@ public class SimpleChat implements Runnable {
 
     //attempts to host a new server on a port, then waits for users to connect
     try {
-      ss = new ServerSocket(8989);
+      ss = new ServerSocket(portNum);
       ss.setSoTimeout(1000);
       System.out.println("Waiting for connections");
 

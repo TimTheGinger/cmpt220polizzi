@@ -5,9 +5,13 @@ import java.util.Scanner;
 public class ServerStarter {
 
   public static void main(String[] args) {
-    SimpleChat myServer = new SimpleChat(); //Creates a new chatroom
-
     Scanner scan = new Scanner(System.in); //Opens a scanner
+
+    System.out.print("enter the port number (4 digits): ");
+    int port = scan.nextInt();
+    SimpleChat myServer = new SimpleChat(port); //Creates a new chatroom
+
+
     String close = scan.next();
 
     Boolean quit = false;
