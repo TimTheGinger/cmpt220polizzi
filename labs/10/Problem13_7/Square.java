@@ -1,4 +1,4 @@
-package Problem13_7;
+//package Problem13_7;
 
 public class Square extends GeometricObject13_7 implements Colorable {
 
